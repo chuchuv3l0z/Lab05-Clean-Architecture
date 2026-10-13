@@ -1,0 +1,54 @@
+@baseUrl = http://localhost:5104
+@token = PEGA_AQUI_TU_TOKEN
+
+### Registrar estudiante
+POST {{baseUrl}}/api/Auth/registrar?rol=Estudiante
+Content-Type: application/json
+
+{"username":"jorge_vilca","password":"Prueba12345"}
+
+### Iniciar sesión
+POST {{baseUrl}}/api/Auth/login
+Content-Type: application/json
+
+{"username":"jorge_vilca","password":"Prueba12345"}
+
+### Crear estudiante
+POST {{baseUrl}}/api/Estudiantes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"nombre":"Jorge Vilca","edad":20,"correo":"jorge@example.com"}
+
+### Listar estudiantes
+GET {{baseUrl}}/api/Estudiantes
+Authorization: Bearer {{token}}
+
+### Actualizar estudiante: cambia el ID por el que recibiste
+PUT {{baseUrl}}/api/Estudiantes/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"nombre":"Jorge Vilca","edad":21,"correo":"jorge@example.com"}
+
+### Crear curso
+POST {{baseUrl}}/api/Cursos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"nombre":"Arquitectura de Software","creditos":3}
+
+### Crear profesor
+POST {{baseUrl}}/api/Profesores
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"nombre":"Profesor de prueba","especialidad":"Software"}
+
+### Procesar matrícula: reemplaza estos IDs por los creados
+POST {{baseUrl}}/api/Matriculas/ProcesarMatricula?idEstudiante=1&idCurso=1&idProfesor=1&semestre=2026-II
+Authorization: Bearer {{token}}
+
+### Consultar perfil
+GET {{baseUrl}}/api/Auth/perfil
+Authorization: Bearer {{token}}
